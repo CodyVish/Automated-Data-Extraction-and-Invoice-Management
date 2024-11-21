@@ -1,8 +1,8 @@
 import React from "react";
 
-function InvoicesTab({ data }) {
+const InvoicesTab = ({ data }) => {
   return (
-    <div>
+    <div className="tab-content">
       <h2>Invoices</h2>
       <table>
         <thead>
@@ -17,21 +17,27 @@ function InvoicesTab({ data }) {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              <td>{row["Serial Number"] || ""}</td>
-              <td>{row["Customer Name"] || ""}</td>
-              <td>{row["Product Name"] || ""}</td>
-              <td>{row["Quantity"] || ""}</td>
-              <td>{row["Tax"] || ""}</td>
-              <td>{row["Total Amount"] || ""}</td>
-              <td>{row["Date"] || ""}</td>
+          {data.length > 0 ? (
+            data.map((item, index) => (
+              <tr key={index}>
+                <td>{item.serialNumber || "-"}</td>
+                <td>{item.customerName || "-"}</td>
+                <td>{item.productName || "-"}</td>
+                <td>{item.quantity || "-"}</td>
+                <td>{item.tax || "-"}</td>
+                <td>{item.totalAmount || "-"}</td>
+                <td>{item.date || "-"}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="7">No data available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default InvoicesTab;

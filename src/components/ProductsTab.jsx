@@ -1,8 +1,8 @@
 import React from "react";
 
-function ProductsTab({ data }) {
+const ProductsTab = ({ data }) => {
   return (
-    <div>
+    <div className="tab-content">
       <h2>Products</h2>
       <table>
         <thead>
@@ -16,20 +16,26 @@ function ProductsTab({ data }) {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              <td>{row["Product Name"] || ""}</td>
-              <td>{row["Quantity"] || ""}</td>
-              <td>{row["Unit Price"] || ""}</td>
-              <td>{row["Tax"] || ""}</td>
-              <td>{row["Price with Tax"] || ""}</td>
-              <td>{row["Discount"] || ""}</td>
+          {data.length > 0 ? (
+            data.map((item, index) => (
+              <tr key={index}>
+                <td>{item.productName || "-"}</td>
+                <td>{item.quantity || "-"}</td>
+                <td>{item.unitPrice || "-"}</td>
+                <td>{item.tax || "-"}</td>
+                <td>{item.priceWithTax || "-"}</td>
+                <td>{item.discount || "-"}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6">No data available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default ProductsTab;

@@ -1,8 +1,8 @@
 import React from "react";
 
-function CustomersTab({ data }) {
+const CustomersTab = ({ data }) => {
   return (
-    <div>
+    <div className="tab-content">
       <h2>Customers</h2>
       <table>
         <thead>
@@ -13,17 +13,23 @@ function CustomersTab({ data }) {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              <td>{row["Customer Name"] || ""}</td>
-              <td>{row["Phone Number"] || ""}</td>
-              <td>{row["Total Purchase Amount"] || ""}</td>
+          {data.length > 0 ? (
+            data.map((item, index) => (
+              <tr key={index}>
+                <td>{item.customerName || "-"}</td>
+                <td>{item.phoneNumber || "-"}</td>
+                <td>{item.totalPurchaseAmount || "-"}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">No data available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default CustomersTab;
