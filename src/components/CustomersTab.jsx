@@ -7,7 +7,7 @@ const CustomersTab = ({ data }) => {
       <table>
         <thead>
           <tr>
-            <th>Customer Name</th>
+            <th>Party Name</th>
             <th>Phone Number</th>
             <th>Total Purchase Amount</th>
           </tr>
@@ -16,7 +16,7 @@ const CustomersTab = ({ data }) => {
           {data.length > 0 ? (
             data.map((item, index) => (
               <tr key={index}>
-                <td>{item.customerName || "-"}</td>
+                <td>{item.partyName || "-"}</td>
                 <td>{item.phoneNumber || "-"}</td>
                 <td>{item.totalPurchaseAmount || "-"}</td>
               </tr>

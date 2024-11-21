@@ -8,9 +8,9 @@ const InvoicesTab = ({ data }) => {
         <thead>
           <tr>
             <th>Serial Number</th>
-            <th>Customer Name</th>
+            <th>Party Name</th>
             <th>Product Name</th>
-            <th>Quantity</th>
+            <th>Qty</th>
             <th>Tax</th>
             <th>Total Amount</th>
             <th>Date</th>
@@ -21,9 +21,9 @@ const InvoicesTab = ({ data }) => {
             data.map((item, index) => (
               <tr key={index}>
                 <td>{item.serialNumber || "-"}</td>
-                <td>{item.customerName || "-"}</td>
+                <td>{item.partyName || "-"}</td>
                 <td>{item.productName || "-"}</td>
-                <td>{item.quantity || "-"}</td>
+                <td>{item.qty || "-"}</td>
                 <td>{item.tax || "-"}</td>
                 <td>{item.totalAmount || "-"}</td>
                 <td>{item.date || "-"}</td>

@@ -39,27 +39,27 @@ function App() {
       // Normalize for Invoices
       invoices.push({
         serialNumber: row["Serial Number"] || "",
-        customerName: row["Customer Name"] || "",
+        partyName: row["Party Name"] || "",
         productName: row["Product Name"] || "",
-        quantity: row["Quantity"] || "",
-        tax: row["Tax"] || "",
-        totalAmount: row["Total Amount"] || "",
-        date: row["Date"] || "",
+        qty: row["Qty"] || "",
+        tax: row["Tax"] || row["Tax (%)"] || "",
+        totalAmount: row["Item Total Amount"] || row["Total Amount"] || "",
+        date: row["Invoice Date"] || row["Date"] || "",
       });
 
       // Normalize for Products
       products.push({
         productName: row["Product Name"] || "",
-        quantity: row["Quantity"] || "",
-        unitPrice: row["Unit Price"] || "",
-        tax: row["Tax"] || "",
+        qty: row["Qty"] || "",
+        unitPrice: row["Unit Price"] || row["Unit"] || "",
+        tax: row["Tax"] || row["Tax (%)"] || "",
         priceWithTax: row["Price with Tax"] || "",
-        discount: row["Discount"] || "",
+        discount: row["Item Discount"] || row["Item Total Discount"] || "",
       });
 
       // Normalize for Customers
       customers.push({
-        customerName: row["Customer Name"] || "",
+        partyName: row["Party Name"] || "",
         phoneNumber: row["Phone Number"] || "",
         totalPurchaseAmount: row["Total Purchase Amount"] || "",
       });

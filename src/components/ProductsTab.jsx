@@ -8,7 +8,7 @@ const ProductsTab = ({ data }) => {
         <thead>
           <tr>
             <th>Product Name</th>
-            <th>Quantity</th>
+            <th>Qty</th>
             <th>Unit Price</th>
             <th>Tax</th>
             <th>Price with Tax</th>
@@ -20,7 +20,7 @@ const ProductsTab = ({ data }) => {
             data.map((item, index) => (
               <tr key={index}>
                 <td>{item.productName || "-"}</td>
-                <td>{item.quantity || "-"}</td>
+                <td>{item.qty || "-"}</td>
                 <td>{item.unitPrice || "-"}</td>
                 <td>{item.tax || "-"}</td>
                 <td>{item.priceWithTax || "-"}</td>
