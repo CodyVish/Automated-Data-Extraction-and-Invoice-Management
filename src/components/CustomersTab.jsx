@@ -2,7 +2,7 @@ import React from "react";
 
 const CustomersTab = ({ data }) => {
   return (
-    <div className="tab-content">
+    <div className="customers-tab">
       <h2>Customers</h2>
       <table>
         <thead>
@@ -14,11 +14,11 @@ const CustomersTab = ({ data }) => {
         </thead>
         <tbody>
           {data.length > 0 ? (
-            data.map((item, index) => (
+            data.map((customer, index) => (
               <tr key={index}>
-                <td>{item.partyName || "-"}</td>
-                <td>{item.phoneNumber || "-"}</td>
-                <td>{item.totalPurchaseAmount || "-"}</td>
+                <td>{customer.partyName}</td>
+                <td>{customer.phoneNumber || "N/A"}</td>
+                <td>{customer.totalPurchaseAmount}</td>
               </tr>
             ))
           ) : (

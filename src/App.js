@@ -22,21 +22,19 @@ function App() {
       const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
       const data = XLSX.utils.sheet_to_json(firstSheet);
 
-      normalizeData(data); // Normalize data once it's read
+      normalizeData(data);
     };
 
     reader.readAsBinaryString(file);
   };
 
-  // Normalize the data into specific categories
   const normalizeData = (data) => {
     const invoices = [];
     const products = [];
     const customers = [];
 
-    // Process data row by row to categorize the information
     data.forEach((row) => {
-      // Normalize for Invoices
+      // Normalize for invoices
       invoices.push({
         serialNumber: row["Serial Number"] || "",
         partyName: row["Party Name"] || "",
@@ -47,7 +45,7 @@ function App() {
         date: row["Invoice Date"] || row["Date"] || "",
       });
 
-      // Normalize for Products
+      // Normalize for products
       products.push({
         productName: row["Product Name"] || "",
         qty: row["Qty"] || "",
@@ -57,7 +55,7 @@ function App() {
         discount: row["Item Discount"] || row["Item Total Discount"] || "",
       });
 
-      // Normalize for Customers
+      // Normalize for customers
       customers.push({
         partyName: row["Party Name"] || "",
         phoneNumber: row["Phone Number"] || "",
@@ -66,10 +64,25 @@ function App() {
     });
 
     setNormalizedData({
-      invoices,
-      products,
-      customers,
+      invoices: groupDuplicates(invoices, "partyName"), // Group duplicates for invoices by party name
+      products: groupDuplicates(products, "productName"), // Group duplicates for products by product name
+      customers: groupDuplicates(customers, "partyName"), // Group duplicates for customers by party name
     });
+  };
+
+  // Function to group duplicate rows
+  const groupDuplicates = (data, groupByKey) => {
+    const groupedData = {};
+    data.forEach((row) => {
+      const key = row[groupByKey];
+      if (!key) return; // Skip rows without the grouping key
+      if (!groupedData[key]) {
+        groupedData[key] = { ...row, totalPurchaseAmount: Number(row.totalPurchaseAmount) || 0 };
+      } else {
+        groupedData[key].totalPurchaseAmount += Number(row.totalPurchaseAmount) || 0; // Sum up purchase amounts
+      }
+    });
+    return Object.values(groupedData);
   };
 
   return (
